@@ -9,7 +9,7 @@ import { TensionGauge } from '@/components/ui/tension-gauge';
 export default function SimulationScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const sp = useMemo(() => (id ? getSpeciesById(id) : undefined), [id]);
-  const { hapticsEnabled, difficulty } = useSettings();
+  const { hapticsEnabled, hapticsMode, difficulty } = useSettings();
   const toastY = useRef(new Animated.Value(-40)).current;
 
   if (!sp) {
@@ -20,7 +20,7 @@ export default function SimulationScreen() {
     );
   }
 
-  const sim = useSimulation(sp, difficulty, hapticsEnabled);
+  const sim = useSimulation(sp, difficulty, hapticsEnabled, hapticsMode);
 
   // Simple toast animation when lastEvent exists
   if (sim.snapshot.lastEvent) {

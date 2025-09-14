@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Difficulty, Species } from '@/lib/types';
-import { feedback, type SimEventType } from '@/lib/sim/feedback';
+import { feedback, stopContinuous, type SimEventType } from '@/lib/sim/feedback';
+import type { HapticsMode } from '@/lib/store';
 
 export type SimPhase = 'running' | 'headshake' | 'jumping' | 'diving' | 'circling' | 'landed' | 'breakoff';
 
@@ -21,7 +22,7 @@ function diffPreset(difficulty: Difficulty) {
   return { decay: 1.0, breakMs: 250, jumpLoss: 1.0 };
 }
 
-export function useSimulation(species: Species, difficulty: Difficulty, hapticsEnabled: boolean) {
+export function useSimulation(species: Species, difficulty: Difficulty, hapticsEnabled: boolean, hapticsMode: HapticsMode) {
   const [snapshot, setSnapshot] = useState<SimSnapshot>({ t: 0, tension: 0, lineOut: 0, stamina: 1, phase: 'running' });
   const [paused, setPaused] = useState(false);
   const [done, setDone] = useState<null | 'landed' | 'breakoff'>(null);
@@ -49,6 +50,7 @@ export function useSimulation(species: Species, difficulty: Difficulty, hapticsE
     setSnapshot({ t: 0, tension: 0, lineOut: params.run0 * 0.2, stamina: clamp01(0.6 + params.stamina * 0.4), phase: 'running' });
     setDone(null);
     sinceOverRef.current = 0;
+    stopContinuous();
   }, [species.id, params.run0, params.stamina]);
 
   useEffect(() => {
@@ -142,29 +144,29 @@ export function useSimulation(species: Species, difficulty: Difficulty, hapticsE
 
   // Observe snapshot to produce feedback and end conditions
   useEffect(() => {
-    if (snapshot.lastEvent) feedback(snapshot.lastEvent, hapticsEnabled);
+    if (snapshot.lastEvent) feedback(snapshot.lastEvent, hapticsEnabled, hapticsMode, snapshot.tension);
     if (snapshot.phase === 'landed' || snapshot.phase === 'breakoff') {
       setDone(snapshot.phase);
-      feedback(snapshot.phase, hapticsEnabled);
+      feedback(snapshot.phase, hapticsEnabled, hapticsMode, snapshot.tension);
     } else if (snapshot.phase === 'running') {
-      feedback('run_tick', hapticsEnabled);
+      feedback('run_tick', hapticsEnabled, hapticsMode, snapshot.tension);
     } else if (snapshot.phase === 'circling') {
-      feedback('circle_tick', hapticsEnabled);
+      feedback('circle_tick', hapticsEnabled, hapticsMode, snapshot.tension);
     }
-  }, [snapshot.lastEvent, snapshot.phase, hapticsEnabled]);
+  }, [snapshot.lastEvent, snapshot.phase, snapshot.tension, hapticsEnabled, hapticsMode]);
 
   return {
     snapshot,
     paused,
     done,
-    pause: () => setPaused(true),
+    pause: () => { setPaused(true); stopContinuous(); },
     resume: () => setPaused(false),
     end: (why: 'landed' | 'breakoff') => setDone(why),
     reset: () => {
       setSnapshot({ t: 0, tension: 0, lineOut: 0, stamina: 1, phase: 'running' });
       setDone(null);
       setPaused(false);
+      stopContinuous();
     },
   } as const;
 }
-

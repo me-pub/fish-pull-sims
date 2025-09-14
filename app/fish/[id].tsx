@@ -5,11 +5,12 @@ import { getSpeciesById } from '@/lib/fishData';
 import { Tag } from '@/components/ui/tag';
 import { Card } from '@/components/ui/card';
 import { useSettings } from '@/lib/store';
+import { Platform } from 'react-native';
 
 export default function FishDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const species = useMemo(() => (id ? getSpeciesById(id) : undefined), [id]);
-  const { hapticsEnabled, setHaptics, difficulty, setDifficulty, setLastFishId } = useSettings();
+  const { hapticsEnabled, setHaptics, difficulty, setDifficulty, setLastFishId, hapticsMode, setHapticsMode } = useSettings();
 
   if (!species) {
     return (
@@ -90,6 +91,21 @@ export default function FishDetail() {
                 <Tag label={d} variant={difficulty === d ? 'teal' : 'neutral'} />
               </Pressable>
             ))}
+          </View>
+        </Row>
+        <Row>
+          <Text style={styles.body}>Haptics Mode</Text>
+          <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+            {(['subtle', 'detailed'] as const).map((m) => (
+              <Pressable key={m} onPress={() => setHapticsMode(m)}>
+                <Tag label={m} variant={hapticsMode === m ? 'teal' : 'neutral'} />
+              </Pressable>
+            ))}
+            {Platform.OS === 'android' && (
+              <Pressable onPress={() => setHapticsMode('android_continuous')}>
+                <Tag label="continuous" variant={hapticsMode === 'android_continuous' ? 'teal' : 'neutral'} />
+              </Pressable>
+            )}
           </View>
         </Row>
       </Card>

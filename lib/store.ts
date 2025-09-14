@@ -23,30 +23,35 @@ try {
   };
 }
 
+export type HapticsMode = 'subtle' | 'detailed' | 'android_continuous';
+
 type SettingsState = {
   hapticsEnabled: boolean;
   difficulty: Difficulty;
   lastFishId: string | null;
+  hapticsMode: HapticsMode;
   setHaptics: (v: boolean) => void;
   setDifficulty: (d: Difficulty) => void;
   setLastFishId: (id: string | null) => void;
+  setHapticsMode: (m: HapticsMode) => void;
 };
 
 export const useSettings = create<SettingsState>()(
   persist(
     (set) => ({
       hapticsEnabled: true,
+      hapticsMode: 'subtle',
       difficulty: 'medium',
       lastFishId: null,
       setHaptics: (v) => set({ hapticsEnabled: v }),
       setDifficulty: (d) => set({ difficulty: d }),
       setLastFishId: (id) => set({ lastFishId: id }),
+      setHapticsMode: (m) => set({ hapticsMode: m }),
     }),
     {
       name: 'settings.v1',
       storage: createJSONStorage(() => storageImpl),
-      partialize: (s) => ({ hapticsEnabled: s.hapticsEnabled, difficulty: s.difficulty, lastFishId: s.lastFishId }),
+      partialize: (s) => ({ hapticsEnabled: s.hapticsEnabled, hapticsMode: s.hapticsMode, difficulty: s.difficulty, lastFishId: s.lastFishId }),
     }
   )
 );
-
