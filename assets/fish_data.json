@@ -1,0 +1,260 @@
+{
+  "version": "1.0-ID-shoreline",
+  "generated_at": "2025-09-14",
+  "units": "relative-index-0to10",
+  "species": [
+    {
+      "name": "Bandeng (Milkfish)",
+      "scientific_name": "Chanos chanos",
+      "habitat": "Brackish ponds, coastal waters, offshore schooling",
+      "tackle_class": "inshore_medium",
+      "fight_profile": {
+        "burst_speed": 9,
+        "initial_run_distance": 8,
+        "jump_probability": 8,
+        "jump_frequency_per_min": 2,
+        "dive_probability": 3,
+        "circle_under_boat_probability": 2,
+        "headshake_intensity": 5,
+        "cover_or_depth_escape_tendency": "long_surface_runs_with_jumps",
+        "stamina_index": 7,
+        "typical_phases": [
+          "violent_initial_run",
+          "series_of_jumps",
+          "erratic_direction_changes",
+          "longer_pull_runs_before_tiring"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Known as Indonesian tarpon – many fish lost at jump",
+        "Light wire hooks help with soft mouth"
+      ],
+      "image_url": "https://commons.wikimedia.org/wiki/File:Chanidae_-_Chanos_chanos.JPG"
+    },
+    {
+      "name": "Kerapu (Grouper, various species)",
+      "scientific_name": "Epinephelus spp.",
+      "habitat": "Reef ledges, wrecks, rocky bottoms",
+      "tackle_class": "inshore_offshore_heavy",
+      "fight_profile": {
+        "burst_speed": 6,
+        "initial_run_distance": 3,
+        "jump_probability": 0,
+        "dive_probability": 10,
+        "circle_under_boat_probability": 3,
+        "headshake_intensity": 7,
+        "cover_or_depth_escape_tendency": "immediate_dive_into_structure",
+        "stamina_index": 8,
+        "typical_phases": [
+          "explosive_hit_and_dive",
+          "dogged_lock_into_structure",
+          "short_power_surge_if_pulled_out"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Hookup often decided in first 5 seconds",
+        "Drag locked and rod lifted instantly is key"
+      ]
+    },
+    {
+      "name": "Bawal Hitam / Bawal Putih (Pomfret)",
+      "scientific_name": "Parastromateus niger / Pampus spp.",
+      "habitat": "Coastal waters, estuaries",
+      "tackle_class": "inshore_light",
+      "fight_profile": {
+        "burst_speed": 7,
+        "initial_run_distance": 6,
+        "jump_probability": 2,
+        "dive_probability": 4,
+        "headshake_intensity": 4,
+        "stamina_index": 5,
+        "cover_or_depth_escape_tendency": "wide_arcing_runs",
+        "typical_phases": [
+          "fast_initial_burst",
+          "steady_sideways_runs",
+          "flattened_fish_profile_adds_drag"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Fight feels heavier than size due to body shape"
+      ]
+    },
+    {
+      "name": "Tongkol / Tuna Kecil (Little Tuna, Bonito)",
+      "scientific_name": "Euthynnus affinis / Auxis spp.",
+      "habitat": "Coastal pelagic, offshore schools",
+      "tackle_class": "offshore_light_medium",
+      "fight_profile": {
+        "burst_speed": 8,
+        "initial_run_distance": 7,
+        "jump_probability": 0,
+        "dive_probability": 8,
+        "circle_under_boat_probability": 7,
+        "headshake_intensity": 2,
+        "stamina_index": 7,
+        "cover_or_depth_escape_tendency": "deep_circling_under_boat",
+        "typical_phases": [
+          "blistering_first_run",
+          "sustained_pull_in_current",
+          "death_circle_like_mini_tuna"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Behaves like scaled-down yellowfin",
+        "Spinning gear heats up fast"
+      ]
+    },
+    {
+      "name": "Kakap Merah (Mangrove Red Snapper, MJ)",
+      "scientific_name": "Lutjanus argentimaculatus",
+      "habitat": "Mangroves, estuaries, nearshore reefs",
+      "tackle_class": "inshore_medium",
+      "fight_profile": {
+        "burst_speed": 8,
+        "initial_run_distance": 5,
+        "jump_probability": 1,
+        "dive_probability": 9,
+        "circle_under_boat_probability": 2,
+        "headshake_intensity": 6,
+                "stamina_index": 6,
+        "cover_or_depth_escape_tendency": "immediate_surge_into_snags_or_pilings",
+        "typical_phases": [
+          "explosive_hit",
+          "short_powerful_run_into_cover",
+          "dogged_pulls_when_turned"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Like grouper, fight often decided in first seconds",
+        "Strong drag and side pressure required"
+      ]
+    },
+    {
+      "name": "Ikan Belanak (Mullet)",
+      "scientific_name": "Mugilidae family",
+      "habitat": "Coastal shallows, estuaries",
+      "tackle_class": "ultralight",
+      "fight_profile": {
+        "burst_speed": 6,
+        "initial_run_distance": 5,
+        "jump_probability": 5,
+        "dive_probability": 3,
+        "circle_under_boat_probability": 1,
+                "headshake_intensity": 3,
+        "stamina_index": 4,
+        "cover_or_depth_escape_tendency": "surface_skimming_runs",
+        "typical_phases": [
+          "erratic_first_burst",
+          "occasional_jump",
+          "fast_tiring"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Fun on ultralight tackle, but tire quickly"
+      ]
+    },
+    {
+      "name": "Tenggiri (Narrow-barred Spanish Mackerel)",
+      "scientific_name": "Scomberomorus commerson",
+      "habitat": "Nearshore reefs, current lines, drop-offs",
+      "tackle_class": "inshore_medium_heavy",
+      "fight_profile": {
+        "burst_speed": 10,
+        "initial_run_distance": 9,
+        "jump_probability": 2,
+                "jump_frequency_per_min": 0,
+        "dive_probability": 4,
+        "circle_under_boat_probability": 2,
+        "headshake_intensity": 6,
+                "stamina_index": 6,
+        "cover_or_depth_escape_tendency": "long_blistering_surface_runs",
+        "typical_phases": [
+          "explosive_hit_and_line_screaming_run",
+          "long_surface_or_midwater_run",
+          "quick_fight_if_drag_and_knots_hold"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Sharp teeth = many cut-offs (simulate leader failure chance)",
+        "High-speed predator, little stamina compared to tuna"
+      ]
+    },
+    {
+      "name": "Ikan Layaran (Juvenile Sailfish)",
+      "scientific_name": "Istiophorus platypterus",
+      "habitat": "Nearshore currents, coastal pelagic (juveniles closer in)",
+      "tackle_class": "inshore_medium_heavy",
+      "fight_profile": {
+        "burst_speed": 9,
+        "initial_run_distance": 8,
+        "jump_probability": 10,
+                "jump_frequency_per_min": 3,
+        "dive_probability": 5,
+        "circle_under_boat_probability": 3,
+        "headshake_intensity": 7,
+                "stamina_index": 7,
+        "cover_or_depth_escape_tendency": "acrobatics_then_sounding",
+        "typical_phases": [
+          "lightning_run",
+          "tailwalk_and_series_of_jumps",
+          "eventual_dive_and_arc_runs"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Bow_to_the_bill on jumps",
+        "Fast acrobatic fight, often short compared to marlin"
+      ]
+    },
+    {
+      "name": "Kuwe (Trevally / Jack)",
+      "scientific_name": "Caranx spp.",
+      "habitat": "Surf zones, rocky shores, harbors",
+      "tackle_class": "inshore_medium",
+      "fight_profile": {
+        "burst_speed": 8,
+        "initial_run_distance": 7,
+        "jump_probability": 2,
+        "dive_probability": 7,
+        "circle_under_boat_probability": 4,
+                "headshake_intensity": 6,
+        "stamina_index": 7,
+        "cover_or_depth_escape_tendency": "brute_force_runs_with_direction_changes",
+        "typical_phases": [
+          "powerful_initial_surge",
+          "long_runs_side_to_side",
+          "dogged_circle_runs_nearshore"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Hard pulling fish, fights above their weight",
+        "Great shoreline sportfish"
+      ]
+    },
+    {
+      "name": "Barramundi (Ikan Siakap / Kakap Putih)",
+      "scientific_name": "Lates calcarifer",
+      "habitat": "Mangroves, estuaries, river mouths, shorelines",
+      "tackle_class": "inshore_medium",
+      "fight_profile": {
+        "burst_speed": 7,
+        "initial_run_distance": 6,
+        "jump_probability": 8,
+                "jump_frequency_per_min": 2,
+        "dive_probability": 6,
+        "circle_under_boat_probability": 2,
+                "headshake_intensity": 8,
+        "stamina_index": 6,
+        "cover_or_depth_escape_tendency": "violent_jump_and_run_toward_cover",
+        "typical_phases": [
+          "explosive_hit",
+          "big_surface_jump_with_headshakes",
+          "short_bulldogging_runs_toward_cover"
+        ]
+      },
+      "angler_tips_to_simulate": [
+        "Many fish lost mid-air during jump",
+        "Smart fish, often head to snags immediately"
+      ]
+    }
+  ]
+}
