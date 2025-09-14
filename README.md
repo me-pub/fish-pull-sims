@@ -1,50 +1,83 @@
-# Welcome to your Expo app 👋
+# Fish Fight Simulator (Expo + React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Simulate shoreline fish fights using curated species profiles from Indonesia’s coast. Built with Expo, runs fully offline, and follows our dark, card‑based UI.
 
-## Get started
+Status (2025-09-14)
+- Phase 1 (Data + Navigation) ✅
+- Phase 2 (Simulation + Haptics) ✅
+- Phase 3 (History) ⏳
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- Offline dataset: `assets/fish_data.json` with species fight profiles (0–10 indexes)
+- Fish Select grid with search; Fish Detail with stats and tips
+- Simulation screen with tension gauge, line‑out and stamina bars
+- Event feedback via haptics (jump, dive, headshake, landed/breakoff)
+- Subtle “pull buzz” while the fish is running; cadence follows tension
+- Settings: difficulty, haptics on/off, and haptics mode (Subtle • Detailed • Android Continuous)
 
-2. Start the app
+## Screens (WIP)
 
-   ```bash
-   npx expo start
-   ```
+- Home: fish grid, search
+- Detail: stats as bars, tags, Play button
+- Simulation: circular tension gauge, bars, event toasts
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Quick start
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Tips
+- Use `npx expo start -c` to clear cache after dependency changes.
+- We include `metro.config.js` to prefer compiled entries (helps react-native-svg resolution).
 
-## Learn more
+## Tech stack
 
-To learn more about developing your project with Expo, look at the following resources:
+- Expo SDK 54, React Native 0.81, TypeScript
+- Router: expo-router
+- State/persistence: zustand + MMKV (fallback to memory in Expo Go)
+- Haptics: expo-haptics; optional Android continuous via Vibration API
+- UI: custom components (Card, Tag, TensionGauge), react-native-svg
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Project structure
 
-## Join the community
+```
+app/
+  (tabs)/index.tsx        // Fish Select (grid + search)
+  fish/[id].tsx           // Fish Detail + Settings + Play
+  simulate/[id].tsx       // Simulation (tension gauge, bars, toasts)
+assets/
+  fish_data.json          // Species dataset (relative 0–10 scales)
+components/ui/
+  card.tsx, tag.tsx, tension-gauge.tsx
+lib/
+  types.ts                // TS models
+  fishData.ts             // Load/slug/search species
+  store.ts                // Settings (haptics, difficulty, mode)
+  sim/
+    engine.ts             // 20 Hz loop, FSM, model
+    feedback.ts           // Haptics mapping + background pulses
+docs/
+  FishFightSimulator.md   // Full spec
+  ui_guide.md             // Design guide
+```
 
-Join our community of developers creating universal apps.
+## Simulation model (summary)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- 20 Hz tick; phases: running | headshake | jumping | diving | circling → landed | breakoff
+- Tension ~ burst × stamina with per‑event modifiers; line‑out increases on runs, decreases with tension
+- Difficulty changes stamina decay, breakoff window, and jump loss
+- Haptics: distinct event cues; background micro‑pulses mapped to tension
+
+## Contributing
+
+- Follow the palette and component rules in `docs/ui_guide.md`.
+- Keep all numeric inputs normalized (0–10 as in dataset).
+- File‑based routes only under `app/`.
+
+## License
+
+Proprietary / research use. Ask before redistributing.
+
